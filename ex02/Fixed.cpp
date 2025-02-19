@@ -32,35 +32,32 @@ const Fixed&	Fixed::max(Fixed const &ref1, Fixed const &ref2)
 		return (ref2);
 }
 
-Fixed		Fixed::operator--(int)
-{
-	Fixed	temp = *this;
-
-	this->fix--;
-	return (temp);
+// Pré-incrémentation (++a)
+Fixed Fixed::operator++() {
+    this->fix += (1 << this->virgule);
+    return *this;
 }
 
-Fixed		Fixed::operator--()
-{
-	--this->fix;
-	return (*this);
+// Post-incrémentation (a++)
+Fixed Fixed::operator++(int) {
+    Fixed temp = *this;
+    this->fix += (1 << this->virgule);
+    return temp;
 }
 
-// post-incrementation
-Fixed		Fixed::operator++()
-{
-	++this->fix;
-	return (*this);
+// Pré-décrémentation (--a)
+Fixed Fixed::operator--() {
+    this->fix -= (1 << this->virgule);
+    return *this;
 }
 
-// pré-incrementation
-Fixed		Fixed::operator++(int)
-{
-	Fixed	temp = *this;
-	
-	this->fix++;
-	return (temp);
+// Post-décrémentation (a--)
+Fixed Fixed::operator--(int) {
+    Fixed temp = *this;
+    this->fix -= (1 << this->virgule);
+    return temp;
 }
+
 
 Fixed		Fixed::operator/(const Fixed& src) const
 {
